@@ -18,7 +18,7 @@
 	url = https://github.com/colin-combe/crosslink-viewer.git
 [submodule "history"]
 	path = history
-	url = https://github.com/colin-combe/history
+	url = https://github.com/colin-combe/history.git
 [submodule "userGUI"]
 	path = userGUI
 	url = https://github.com/colin-combe/userGUI.git
