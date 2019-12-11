@@ -22,6 +22,17 @@ Follow the instructions at [https://github.com/Rappsilber-Laboratory/xiSPEC_ms_p
 
 Follow the instructions at  https://github.com/Rappsilber-Laboratory/xiAnnotator/tree/master/doc/SysV
 
+Connecting to the annotator from the javascript running in the browser requires you to do some stuff setting up a proxy to it.
+I think you will need the apache proxy_http & headers modules installed.
+
+You will need something like this in the apache config for the host:
+'''<Location "/xiAnnotator">
+   ProxyPass http://localhost:8083/xiAnnotator
+   ProxyPassReverse http://localhost:8083/xiAnnotator
+   Header add "Access-Control-Allow-Origin" "*"
+</Location>  
+'''
+
 ## 6. Edit yet more config files (todo - tidy this up)
 
 Edit ./connectionString.php so it points to your PostgreSQL database
