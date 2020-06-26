@@ -1,15 +1,9 @@
-[submodule "xiNET_website"]
-	path = xiNET_website
-	url = https://github.com/colin-combe/xiNET_website.git
 [submodule "CLMS-UI"]
 	path = xi3
 	url = https://github.com/colin-combe/CLMS-UI.git
 [submodule "CLMS-model"]
 	path = CLMS-model
 	url = https://github.com/colin-combe/CLMS-model.git
-[submodule "xiSPEC_ms_parser"]
-	path = xiSPEC_ms_parser
-	url = https://github.com/colin-combe/xiSPEC_ms_parser.git
 [submodule "spectrum"]
 	path = spectrum
 	url = https://github.com/colin-combe/spectrum.git
