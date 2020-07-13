@@ -22,3 +22,6 @@
 [submodule "xidocs"]
 	path = xidocs
 	url = https://github.com/colin-combe/xidocs.git
+[submodule "searchSubmit"]
+	path = searchSubmit
+	url = https://github.com/Rappsilber-Laboratory/searchSubmit
