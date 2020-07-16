@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.9
--- Dumped by pg_dump version 9.6.9
+-- Dumped from database version 9.6.17
+-- Dumped by pg_dump version 9.6.17
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -12,6 +12,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -70,6 +71,21 @@ CREATE TABLE public.db_sequences (
 ALTER TABLE public.db_sequences OWNER TO username;
 
 --
+-- Name: layouts; Type: TABLE; Schema: public; Owner: username
+--
+
+CREATE TABLE public.layouts (
+    search_id text NOT NULL,
+    user_id integer NOT NULL,
+    "time" timestamp without time zone DEFAULT now() NOT NULL,
+    layout text,
+    description text
+);
+
+
+ALTER TABLE public.layouts OWNER TO username;
+
+--
 -- Name: modifications; Type: TABLE; Schema: public; Owner: username
 --
 
@@ -95,7 +111,7 @@ CREATE TABLE public.peptide_evidences (
     dbsequence_ref text,
     protein_accession text,
     pep_start integer,
-    is_decoy integer
+    is_decoy boolean
 );
 
 
@@ -111,25 +127,11 @@ CREATE TABLE public.peptides (
     seq_mods text,
     link_site integer,
     crosslinker_modmass double precision,
-    crosslinker_pair_id bigint
+    crosslinker_pair_id character varying
 );
 
 
 ALTER TABLE public.peptides OWNER TO username;
-
---
--- Name: protocols; Type: TABLE; Schema: public; Owner: username
---
-
-CREATE TABLE public.protocols (
-    id text NOT NULL,
-    upload_id integer,
-    protocol json,
-    ms2_tol double precision
-);
-
-
-ALTER TABLE public.protocols OWNER TO username;
 
 --
 -- Name: spectra; Type: TABLE; Schema: public; Owner: username
@@ -142,7 +144,9 @@ CREATE TABLE public.spectra (
     peak_list_file_name text,
     scan_id text,
     frag_tol text,
-    spectrum_ref text
+    spectrum_ref text,
+    precursor_charge smallint,
+    precursor_mz double precision
 );
 
 
@@ -164,7 +168,10 @@ CREATE TABLE public.spectrum_identifications (
     ions text,
     scores json,
     exp_mz double precision,
-    calc_mz double precision
+    calc_mz double precision,
+    meta1 character varying,
+    meta2 character varying,
+    meta3 character varying
 );
 
 
@@ -184,17 +191,21 @@ CREATE TABLE public.uploads (
     audits json,
     samples json,
     analyses json,
-    protocol json,
+    protousername json,
     bib json,
     spectra_formats json,
-    upload_time date,
+    upload_time timestamp without time zone,
     default_pdb text,
     contains_crosslinks boolean,
     upload_error text,
     error_type text,
     upload_warnings json,
     origin text,
-    random_id character varying DEFAULT public.make_uid()
+    random_id character varying DEFAULT public.make_uid(),
+    deleted boolean DEFAULT false,
+    ident_count bigint,
+    ident_file_size bigint,
+    zipped_peak_list_file_size character varying
 );
 
 
@@ -245,10 +256,10 @@ CREATE TABLE public.users (
     max_spectra integer,
     gdpr_token character varying,
     id integer NOT NULL,
-    gdpr_timestamp time without time zone,
     ptoken character varying,
-    ptoken_timestamp character varying,
-    hidden boolean
+    hidden boolean,
+    ptoken_timestamp timestamp without time zone,
+    gdpr_timestamp timestamp without time zone
 );
 
 
@@ -290,11 +301,11 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
--- Name: protocols protocols_pkey; Type: CONSTRAINT; Schema: public; Owner: username
+-- Name: layouts layouts_pkey; Type: CONSTRAINT; Schema: public; Owner: username
 --
 
-ALTER TABLE ONLY public.protocols
-    ADD CONSTRAINT protocols_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.layouts
+    ADD CONSTRAINT layouts_pkey PRIMARY KEY (search_id, user_id, "time");
 
 
 --
@@ -303,6 +314,34 @@ ALTER TABLE ONLY public.protocols
 
 ALTER TABLE ONLY public.uploads
     ADD CONSTRAINT uploads_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: peptide_evidences_upload_id_idx; Type: INDEX; Schema: public; Owner: username
+--
+
+CREATE INDEX peptide_evidences_upload_id_idx ON public.peptide_evidences USING btree (upload_id);
+
+
+--
+-- Name: peptides_upload_id_idx; Type: INDEX; Schema: public; Owner: username
+--
+
+CREATE INDEX peptides_upload_id_idx ON public.peptides USING btree (upload_id);
+
+
+--
+-- Name: spectra_upload_id_idx; Type: INDEX; Schema: public; Owner: username
+--
+
+CREATE INDEX spectra_upload_id_idx ON public.spectra USING btree (upload_id);
+
+
+--
+-- Name: spectrum_identifications_upload_id_idx; Type: INDEX; Schema: public; Owner: username
+--
+
+CREATE INDEX spectrum_identifications_upload_id_idx ON public.spectrum_identifications USING btree (upload_id);
 
 
 --
