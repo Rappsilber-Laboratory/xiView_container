@@ -18,7 +18,7 @@
 	url = https://github.com/colin-combe/userGUI.git
 [submodule "vendor"]
 	path = vendor
-	url = https://github.com/colin-combe/vendor.git
+	url = https://github.com/Rappsilber-Laboratory/vendor.git
 [submodule "xidocs"]
 	path = xidocs
 	url = https://github.com/colin-combe/xidocs.git
