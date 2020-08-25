@@ -1,6 +1,6 @@
 [submodule "CLMS-UI"]
 	path = xi3
-	url = https://github.com/colin-combe/CLMS-UI.git
+	url = https://github.com/Rappsilber-Laboratory/xiView.git
 [submodule "CLMS-model"]
 	path = CLMS-model
 	url = https://github.com/colin-combe/CLMS-model.git
