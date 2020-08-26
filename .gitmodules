@@ -6,7 +6,7 @@
 	url = https://github.com/colin-combe/CLMS-model.git
 [submodule "spectrum"]
 	path = spectrum
-	url = https://github.com/colin-combe/spectrum.git
+	url = https://github.com/Rappsilber-Laboratory/xiSPEC_spectrumViewer.git
 [submodule "crosslink-viewer"]
 	path = crosslink-viewer
 	url = https://github.com/colin-combe/crosslink-viewer.git
