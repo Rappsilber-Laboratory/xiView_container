@@ -3,25 +3,25 @@
 	url = https://github.com/Rappsilber-Laboratory/xiView.git
 [submodule "CLMS-model"]
 	path = CLMS-model
-	url = https://github.com/colin-combe/CLMS-model.git
+	url = https://github.com/Rappsilber-Laboratory/CLMS-model.git
 [submodule "spectrum"]
 	path = spectrum
 	url = https://github.com/Rappsilber-Laboratory/xiSPEC_spectrumViewer.git
 [submodule "crosslink-viewer"]
 	path = crosslink-viewer
-	url = https://github.com/colin-combe/crosslink-viewer.git
+	url = https://github.com/Rappsilber-Laboratory/crosslink-viewer.git
 [submodule "history"]
 	path = history
-	url = https://github.com/colin-combe/history.git
+	url = https://github.com/Rappsilber-Laboratory/history.git
 [submodule "userGUI"]
 	path = userGUI
-	url = https://github.com/colin-combe/userGUI.git
+	url = https://github.com/Rappsilber-Laboratory/userGUI.git
 [submodule "vendor"]
 	path = vendor
 	url = https://github.com/Rappsilber-Laboratory/vendor.git
 [submodule "xidocs"]
 	path = xidocs
-	url = https://github.com/colin-combe/xidocs.git
+	url = https://github.com/Rappsilber-Laboratory/xidocs.git
 [submodule "searchSubmit"]
 	path = searchSubmit
 	url = https://github.com/Rappsilber-Laboratory/searchSubmit
