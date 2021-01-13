@@ -1,18 +1,23 @@
-# xiView_container
+# xiVIEW_container
 
-brings together various git project from Rappsilber Laboratory to provide a search software independent web interface to CLMS data. It uses the git submodule mechanism (except for xiAnnotator at the moment).
+brings together several projects from Rappsilber Laboratory to provide a search software independent web interface to CLMS data. It uses the git submodule mechanism (except for xiAnnotator at the moment).
 
 # Installation Instructions
 
-## 1. Checkout out this github project, initialising submodules
+## 1. Pre-requisites: Apache, PostgreSQL, PHP postgres modules, Git
 
-git clone --recurse-submodules https://github.com/Rappsilber-Laboratory/xiView_container.git
+If running the server on Windows then the easiest way to get Apache and Php setup is to install [XAMPP](https://www.apachefriends.org/download.html).
 
-## 2. Install Apache, PostgreSQL, PHP postgres modules
+## 2. Create xiVIEW database and database user
 
-## 3. Initialise the database by running the schema.sql script from this project
+Initialise the database by running the schema.sql script from this project
 
-you will need to search and replace on the schrema.sql to swap 'username' for your PostgreSQL user name
+## 3. Checkout out this github project, initialising submodules
+
+From the document root of your webserver
+      
+`git clone --recurse-submodules https://github.com/Rappsilber-Laboratory/xiView_container.git
+`
 
 ## 4. Configure the python environment for the file parser
 
@@ -36,7 +41,7 @@ You will need something like this in the apache config for the host:
 ## 6. Edit yet more config files (todo - tidy this up)
 
 Edit ./connectionString.php so it points to your PostgreSQL database
-Edit ./xiSPEC_config so it points to your xiAnnotator service
+Edit ./xiSPEC_config.php so it points to your xiAnnotator service
 
 .gitignore will ignore your changes to these files
 

@@ -31,7 +31,7 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 --
--- Name: make_uid(); Type: FUNCTION; Schema: public; Owner: username
+-- Name: make_uid(); Type: FUNCTION; Schema: public; Owner: xiview_user
 --
 
 CREATE FUNCTION public.make_uid() RETURNS text
@@ -47,14 +47,14 @@ END;
 $$;
 
 
-ALTER FUNCTION public.make_uid() OWNER TO username;
+ALTER FUNCTION public.make_uid() OWNER TO xiview_user;
 
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: db_sequences; Type: TABLE; Schema: public; Owner: username
+-- Name: db_sequences; Type: TABLE; Schema: public; Owner: xiview_user
 --
 
 CREATE TABLE public.db_sequences (
@@ -68,10 +68,10 @@ CREATE TABLE public.db_sequences (
 );
 
 
-ALTER TABLE public.db_sequences OWNER TO username;
+ALTER TABLE public.db_sequences OWNER TO xiview_user;
 
 --
--- Name: layouts; Type: TABLE; Schema: public; Owner: username
+-- Name: layouts; Type: TABLE; Schema: public; Owner: xiview_user
 --
 
 CREATE TABLE public.layouts (
@@ -83,10 +83,10 @@ CREATE TABLE public.layouts (
 );
 
 
-ALTER TABLE public.layouts OWNER TO username;
+ALTER TABLE public.layouts OWNER TO xiview_user;
 
 --
--- Name: modifications; Type: TABLE; Schema: public; Owner: username
+-- Name: modifications; Type: TABLE; Schema: public; Owner: xiview_user
 --
 
 CREATE TABLE public.modifications (
@@ -99,10 +99,10 @@ CREATE TABLE public.modifications (
 );
 
 
-ALTER TABLE public.modifications OWNER TO username;
+ALTER TABLE public.modifications OWNER TO xiview_user;
 
 --
--- Name: peptide_evidences; Type: TABLE; Schema: public; Owner: username
+-- Name: peptide_evidences; Type: TABLE; Schema: public; Owner: xiview_user
 --
 
 CREATE TABLE public.peptide_evidences (
@@ -115,10 +115,10 @@ CREATE TABLE public.peptide_evidences (
 );
 
 
-ALTER TABLE public.peptide_evidences OWNER TO username;
+ALTER TABLE public.peptide_evidences OWNER TO xiview_user;
 
 --
--- Name: peptides; Type: TABLE; Schema: public; Owner: username
+-- Name: peptides; Type: TABLE; Schema: public; Owner: xiview_user
 --
 
 CREATE TABLE public.peptides (
@@ -131,10 +131,10 @@ CREATE TABLE public.peptides (
 );
 
 
-ALTER TABLE public.peptides OWNER TO username;
+ALTER TABLE public.peptides OWNER TO xiview_user;
 
 --
--- Name: spectra; Type: TABLE; Schema: public; Owner: username
+-- Name: spectra; Type: TABLE; Schema: public; Owner: xiview_user
 --
 
 CREATE TABLE public.spectra (
@@ -150,10 +150,10 @@ CREATE TABLE public.spectra (
 );
 
 
-ALTER TABLE public.spectra OWNER TO username;
+ALTER TABLE public.spectra OWNER TO xiview_user;
 
 --
--- Name: spectrum_identifications; Type: TABLE; Schema: public; Owner: username
+-- Name: spectrum_identifications; Type: TABLE; Schema: public; Owner: xiview_user
 --
 
 CREATE TABLE public.spectrum_identifications (
@@ -175,10 +175,10 @@ CREATE TABLE public.spectrum_identifications (
 );
 
 
-ALTER TABLE public.spectrum_identifications OWNER TO username;
+ALTER TABLE public.spectrum_identifications OWNER TO xiview_user;
 
 --
--- Name: uploads; Type: TABLE; Schema: public; Owner: username
+-- Name: uploads; Type: TABLE; Schema: public; Owner: xiview_user
 --
 
 CREATE TABLE public.uploads (
@@ -191,7 +191,7 @@ CREATE TABLE public.uploads (
     audits json,
     samples json,
     analyses json,
-    protousername json,
+    protoxiview_user json,
     bib json,
     spectra_formats json,
     upload_time timestamp without time zone,
@@ -209,10 +209,10 @@ CREATE TABLE public.uploads (
 );
 
 
-ALTER TABLE public.uploads OWNER TO username;
+ALTER TABLE public.uploads OWNER TO xiview_user;
 
 --
--- Name: uploads_id_seq; Type: SEQUENCE; Schema: public; Owner: username
+-- Name: uploads_id_seq; Type: SEQUENCE; Schema: public; Owner: xiview_user
 --
 
 CREATE SEQUENCE public.uploads_id_seq
@@ -223,17 +223,17 @@ CREATE SEQUENCE public.uploads_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.uploads_id_seq OWNER TO username;
+ALTER TABLE public.uploads_id_seq OWNER TO xiview_user;
 
 --
--- Name: uploads_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
+-- Name: uploads_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: xiview_user
 --
 
 ALTER SEQUENCE public.uploads_id_seq OWNED BY public.uploads.id;
 
 
 --
--- Name: user_in_group; Type: TABLE; Schema: public; Owner: username
+-- Name: user_in_group; Type: TABLE; Schema: public; Owner: xiview_user
 --
 
 CREATE TABLE public.user_in_group (
@@ -242,10 +242,10 @@ CREATE TABLE public.user_in_group (
 );
 
 
-ALTER TABLE public.user_in_group OWNER TO username;
+ALTER TABLE public.user_in_group OWNER TO xiview_user;
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: username
+-- Name: users; Type: TABLE; Schema: public; Owner: xiview_user
 --
 
 CREATE TABLE public.users (
@@ -263,10 +263,10 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO username;
+ALTER TABLE public.users OWNER TO xiview_user;
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: username
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: xiview_user
 --
 
 CREATE SEQUENCE public.users_id_seq
@@ -277,31 +277,31 @@ CREATE SEQUENCE public.users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO username;
+ALTER TABLE public.users_id_seq OWNER TO xiview_user;
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: username
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: xiview_user
 --
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: uploads id; Type: DEFAULT; Schema: public; Owner: username
+-- Name: uploads id; Type: DEFAULT; Schema: public; Owner: xiview_user
 --
 
 ALTER TABLE ONLY public.uploads ALTER COLUMN id SET DEFAULT nextval('public.uploads_id_seq'::regclass);
 
 
 --
--- Name: users id; Type: DEFAULT; Schema: public; Owner: username
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: xiview_user
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
--- Name: layouts layouts_pkey; Type: CONSTRAINT; Schema: public; Owner: username
+-- Name: layouts layouts_pkey; Type: CONSTRAINT; Schema: public; Owner: xiview_user
 --
 
 ALTER TABLE ONLY public.layouts
@@ -309,7 +309,7 @@ ALTER TABLE ONLY public.layouts
 
 
 --
--- Name: uploads uploads_pkey; Type: CONSTRAINT; Schema: public; Owner: username
+-- Name: uploads uploads_pkey; Type: CONSTRAINT; Schema: public; Owner: xiview_user
 --
 
 ALTER TABLE ONLY public.uploads
@@ -317,28 +317,28 @@ ALTER TABLE ONLY public.uploads
 
 
 --
--- Name: peptide_evidences_upload_id_idx; Type: INDEX; Schema: public; Owner: username
+-- Name: peptide_evidences_upload_id_idx; Type: INDEX; Schema: public; Owner: xiview_user
 --
 
 CREATE INDEX peptide_evidences_upload_id_idx ON public.peptide_evidences USING btree (upload_id);
 
 
 --
--- Name: peptides_upload_id_idx; Type: INDEX; Schema: public; Owner: username
+-- Name: peptides_upload_id_idx; Type: INDEX; Schema: public; Owner: xiview_user
 --
 
 CREATE INDEX peptides_upload_id_idx ON public.peptides USING btree (upload_id);
 
 
 --
--- Name: spectra_upload_id_idx; Type: INDEX; Schema: public; Owner: username
+-- Name: spectra_upload_id_idx; Type: INDEX; Schema: public; Owner: xiview_user
 --
 
 CREATE INDEX spectra_upload_id_idx ON public.spectra USING btree (upload_id);
 
 
 --
--- Name: spectrum_identifications_upload_id_idx; Type: INDEX; Schema: public; Owner: username
+-- Name: spectrum_identifications_upload_id_idx; Type: INDEX; Schema: public; Owner: xiview_user
 --
 
 CREATE INDEX spectrum_identifications_upload_id_idx ON public.spectrum_identifications USING btree (upload_id);
