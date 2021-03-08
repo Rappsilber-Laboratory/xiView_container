@@ -2,4 +2,6 @@ connectionString.php
 xiSpecConfig.php
 xi_ini/*
 uploads/
+uploads
 .idea/
+phpinfo.php
