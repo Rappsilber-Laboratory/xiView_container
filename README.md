@@ -1,24 +1,43 @@
-# xiView_container
+# xiVIEW_container
 
-brings together various git project from Rappsilber Laboratory to provide a search software independent web interface to CLMS data. It uses the git submodule mechanism (except for xiAnnotator at the moment).
+brings together several projects from Rappsilber Laboratory to provide a search software independent web interface to CLMS data. It uses the git submodule mechanism (except for xiAnnotator at the moment).
 
 # Installation Instructions
 
-## 1. Checkout out this github project, initialising submodules
 
-git clone --recurse-submodules https://github.com/Rappsilber-Laboratory/xiView_container.git
+## 1. Pre-requisites: Apache, PostgreSQL, PHP postgres module, Git
 
-## 2. Install Apache, PostgreSQL, PHP postgres modules
+If running the server on Windows then the easiest way to get Apache and Php setup is to install [XAMPP](https://www.apachefriends.org/download.html).
 
-## 3. Initialise the database by running the schema.sql script from this project
 
-you will need to search and replace on the schrema.sql to swap 'username' for your PostgreSQL user name
+## 2. Enable PHP postgres modules
 
-## 4. Configure the python environment for the file parser
+to enable the postgres php module add following to php.ini:
+extension=pgsql.so
+
+https://help.guebs.eu/how-to-enable-postgresql-extension-for-php/
+
+alternatively, use a2enmod  https://stackoverflow.com/questions/35988990/how-to-enable-php7-module-in-apache
+
+easiest way to test is probably to call phpinfo() in php and search output for "pgsql", it should appear under loaded modules
+
+
+## 3. Checkout out this github project, initialising submodules
+
+From the document root of your webserver
+      
+`git clone --recurse-submodules https://github.com/Rappsilber-Laboratory/xiView_container.git
+`
+
+## 4. Create xiVIEW database and database user
+
+Initialise the database by running the schema.sql script from this project
+
+## 5. Configure the python environment for the file parser
 
 Follow the instructions at [https://github.com/Rappsilber-Laboratory/xiSPEC_ms_parser](https://github.com/Rappsilber-Laboratory/xiSPEC_ms_parser) but you don't need to install sqlite; instead you need to edit the file xiSPEC_ms_parser/credentials.py to point to your postgress database.
 
-## 5. Install xiAnnotator
+## 6. Install xiAnnotator
 
 Follow the instructions at  https://github.com/Rappsilber-Laboratory/xiAnnotator/tree/master/doc/SysV
 
@@ -33,10 +52,10 @@ You will need something like this in the apache config for the host:
 </Location>  
 '''
 
-## 6. Edit yet more config files (todo - tidy this up)
+## 7. Edit yet more config files (todo - tidy this up)
 
 Edit ./connectionString.php so it points to your PostgreSQL database
-Edit ./xiSPEC_config so it points to your xiAnnotator service
+Edit ./xiSPEC_config.php so it points to your xiAnnotator service
 
 .gitignore will ignore your changes to these files
 
