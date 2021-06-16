@@ -12,8 +12,8 @@ module.exports = {
     // },
 
     entry: {
-        clmsModel: './CLMS-model/src/search-results-model.js',
-        xiNET: './crosslink-viewer/src/crosslink-viewer-BB.js',
+        clms: './CLMS-model/src/search-results-model.js',
+        xinet: './crosslink-viewer/src/crosslink-viewer-BB.js',
     },
     output: {
         filename: '[name].js',
