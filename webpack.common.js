@@ -3,13 +3,25 @@ const path = require("path");
 
 
 module.exports = {
-    entry: path.resolve(__dirname + "/CLMS-model/src/search-results-model.js"),
+    // entry: path.resolve(__dirname + "/CLMS-model/src/search-results-model.js"),
+    // output: {
+    //     path: path.resolve(__dirname, "dist"),
+    //     filename: "clms-model.js",
+    //     library: ["clmsModel"],
+    //     libraryTarget: "umd"
+    // },
+
+    entry: {
+        clmsModel: './CLMS-model/src/search-results-model.js',
+        xiNET: './crosslink-viewer/src/crosslink-viewer-BB.js',
+    },
     output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "clms-model.js",
-        library: ["clms-model"],
+        filename: '[name].js',
+        path: __dirname + '/dist',
+        library: ['[name]'],
         libraryTarget: "umd"
     },
+
     module: {
         rules: [
             {
