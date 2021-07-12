@@ -1,5 +1,6 @@
 connectionString.php
 xiSpecConfig.php
+XiDBConfig.conf
 xi_ini/*
 
 .idea/
